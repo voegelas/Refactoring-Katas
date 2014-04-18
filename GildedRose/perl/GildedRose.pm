@@ -1,74 +1,74 @@
 package GildedRose;
 
-use strict;
-use warnings;
+use Moose;
 
-sub new {
-    my ( $class, %attrs ) = @_;
-    return bless \%attrs, $class;
-}
+has items => ( is => 'ro', isa => 'ArrayRef[ItemDelegator]' );
 
-sub update_quality {
-    my $self = shift;
-    for my $item ( @{ $self->{items} } ) {
-        if (   $item->{name} ne 'Aged Brie'
-            && $item->{name} ne 'Backstage passes to a TAFKAL80ETC concert' )
-        {
-            if ( $item->{quality} > 0 ) {
-                if ( $item->{name} ne 'Sulfuras, Hand of Ragnaros' ) {
-                    $item->{quality} = $item->{quality} - 1;
-                }
+sub _update_item {
+    my ( $self, $item ) = @_;
+    if (   $item->name ne 'Aged Brie'
+        && $item->name ne 'Backstage passes to a TAFKAL80ETC concert' )
+    {
+        if ( $item->quality > 0 ) {
+            if ( $item->name ne 'Sulfuras, Hand of Ragnaros' ) {
+                $item->dec_quality;
             }
         }
-        else {
-            if ( $item->{quality} < 50 ) {
-                $item->{quality} = $item->{quality} + 1;
+    }
+    else {
+        if ( $item->quality < 50 ) {
+            $item->inc_quality;
 
-                if ( $item->{name} eq
-                    'Backstage passes to a TAFKAL80ETC concert' )
-                {
-                    if ( $item->{sell_in} < 11 ) {
-                        if ( $item->{quality} < 50 ) {
-                            $item->{quality} = $item->{quality} + 1;
-                        }
-                    }
-
-                    if ( $item->{sell_in} < 6 ) {
-                        if ( $item->{quality} < 50 ) {
-                            $item->{quality} = $item->{quality} + 1;
-                        }
+            if ( $item->name eq 'Backstage passes to a TAFKAL80ETC concert' )
+            {
+                if ( $item->sell_in < 11 ) {
+                    if ( $item->quality < 50 ) {
+                        $item->inc_quality;
                     }
                 }
-            }
-        }
 
-        if ( $item->{name} ne 'Sulfuras, Hand of Ragnaros' ) {
-            $item->{sell_in} = $item->{sell_in} - 1;
-        }
-
-        if ( $item->{sell_in} < 0 ) {
-            if ( $item->{name} ne 'Aged Brie' ) {
-                if ( $item->{name} ne
-                    'Backstage passes to a TAFKAL80ETC concert' )
-                {
-                    if ( $item->{quality} > 0 ) {
-                        if ( $item->{name} ne 'Sulfuras, Hand of Ragnaros' ) {
-                            $item->{quality} = $item->{quality} - 1;
-                        }
+                if ( $item->sell_in < 6 ) {
+                    if ( $item->quality < 50 ) {
+                        $item->inc_quality;
                     }
-                }
-                else {
-                    $item->{quality} = $item->{quality} - $item->{quality};
-                }
-            }
-            else {
-                if ( $item->{quality} < 50 ) {
-                    $item->{quality} = $item->{quality} + 1;
                 }
             }
         }
     }
+
+    if ( $item->name ne 'Sulfuras, Hand of Ragnaros' ) {
+        $item->dec_sell_in;
+    }
+
+    if ( $item->sell_in < 0 ) {
+        if ( $item->name ne 'Aged Brie' ) {
+            if ( $item->name ne 'Backstage passes to a TAFKAL80ETC concert' )
+            {
+                if ( $item->quality > 0 ) {
+                    if ( $item->name ne 'Sulfuras, Hand of Ragnaros' ) {
+                        $item->dec_quality;
+                    }
+                }
+            }
+            else {
+                $item->set_quality(0);
+            }
+        }
+        else {
+            if ( $item->quality < 50 ) {
+                $item->inc_quality;
+            }
+        }
+    }
+}
+
+sub update_quality {
+    my $self = shift;
+    for my $item ( @{ $self->items } ) {
+        $self->_update_item($item);
+    }
     return;
 }
 
-1;
+no Moose;
+__PACKAGE__->meta->make_immutable;
