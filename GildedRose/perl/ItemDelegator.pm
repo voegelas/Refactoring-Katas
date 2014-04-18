@@ -3,7 +3,7 @@ package ItemDelegator;
 use Moose;
 use Item;
 
-has item => ( is => 'ro', isa => 'Item' );
+has item => ( is => 'ro', isa => 'Item', handles => [qw(_data_printer)] );
 
 around BUILDARGS => sub {
     my ( $orig, $class, %attrs ) = @_;
