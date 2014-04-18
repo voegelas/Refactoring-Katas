@@ -1,7 +1,7 @@
 Yatzy
 =====
 
-Implements the Yatzy dice game as descibed at
+Implements the Yatzy dice game described at
 https://github.com/emilybache/Yatzy-Refactoring-Kata.
 
 On Debian, run the following command to install the required packages:

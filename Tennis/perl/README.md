@@ -1,7 +1,7 @@
 Tennis
 ======
 
-Implements the Tennis scoring rules as descibed at
+Implements the Tennis scoring rules described at
 https://github.com/emilybache/Tennis-Refactoring-Kata.
 
 On Debian, run the following command to install the required packages:
