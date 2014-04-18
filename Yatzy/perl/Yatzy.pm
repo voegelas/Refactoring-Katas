@@ -3,11 +3,11 @@ package Yatzy;
 use strict;
 use warnings;
 
-use List::AllUtils qw(all part sum0);
+use List::AllUtils qw(all part sum);
 
 sub chance {
     my (@dice) = @_;
-    return sum0 @dice;
+    return sum 0, @dice;
 }
 
 sub yatzy {
@@ -17,32 +17,32 @@ sub yatzy {
 
 sub ones {
     my (@dice) = @_;
-    return sum0 grep { $_ == 1 } @dice;
+    return sum 0, grep { $_ == 1 } @dice;
 }
 
 sub twos {
     my (@dice) = @_;
-    return sum0 grep { $_ == 2 } @dice;
+    return sum 0, grep { $_ == 2 } @dice;
 }
 
 sub threes {
     my (@dice) = @_;
-    return sum0 grep { $_ == 3 } @dice;
+    return sum 0, grep { $_ == 3 } @dice;
 }
 
 sub fours {
     my (@dice) = @_;
-    return sum0 grep { $_ == 4 } @dice;
+    return sum 0, grep { $_ == 4 } @dice;
 }
 
 sub fives {
     my (@dice) = @_;
-    return sum0 grep { $_ == 5 } @dice;
+    return sum 0, grep { $_ == 5 } @dice;
 }
 
 sub sixes {
     my (@dice) = @_;
-    return sum0 grep { $_ == 6 } @dice;
+    return sum 0, grep { $_ == 6 } @dice;
 }
 
 sub _sum_n_sets_of_size_m {
@@ -53,7 +53,7 @@ sub _sum_n_sets_of_size_m {
         return 0;
     }
     my @n_sets = @sets[ 0 .. $n - 1 ];
-    return sum0 map { @{$_}[ 0 .. $m - 1 ] } @n_sets;
+    return sum 0, map { @{$_}[ 0 .. $m - 1 ] } @n_sets;
 }
 
 sub one_pair {
@@ -100,7 +100,7 @@ sub full_house {
         return 0;
     }
     my ( $three_of_a_kind_ref, $pair_ref ) = @sets;
-    return sum0 @{$three_of_a_kind_ref}[ 0 .. 2 ], @{$pair_ref}[ 0 .. 1 ];
+    return sum @{$three_of_a_kind_ref}[ 0 .. 2 ], @{$pair_ref}[ 0 .. 1 ];
 }
 
 1;
