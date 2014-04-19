@@ -6,7 +6,7 @@ https://github.com/emilybache/GildedRose-Refactoring-Kata.
 
 On Debian, run the following command to install the required packages:
 
-apt-get install perl libaliased-perl libmoose-perl
+apt-get install perl libmoose-perl
 
 Run the tests with:
 

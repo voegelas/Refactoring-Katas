@@ -6,52 +6,55 @@ use warnings;
 use Test::More 0.96;
 
 use_ok 'GildedRose';
-use_ok 'ItemDelegator';
-use aliased 'ItemDelegator' => 'Item';
+use_ok 'AgedBrie';
+use_ok 'BackstagePass';
+use_ok 'ConjuredItem';
+use_ok 'LegendaryItem';
+use_ok 'RegularItem';
 
 subtest 'OMGHAI!' => sub {
     my $items = [
-        Item->new(
+        RegularItem->new(
             name    => '+5 Dexterity Vest',
             sell_in => 10,
             quality => 20
         ),
-        Item->new(
+        AgedBrie->new(
             name    => 'Aged Brie',
             sell_in => 2,
             quality => 0
         ),
-        Item->new(
+        RegularItem->new(
             name    => 'Elixir of the Mongoose',
             sell_in => 5,
             quality => 7
         ),
-        Item->new(
+        LegendaryItem->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => 0,
             quality => 80
         ),
-        Item->new(
+        LegendaryItem->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => -1,
             quality => 80
         ),
-        Item->new(
+        BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 15,
             quality => 20
         ),
-        Item->new(
+        BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 10,
             quality => 49
         ),
-        Item->new(
+        BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 5,
             quality => 9
         ),
-        Item->new(
+        ConjuredItem->new(
             name    => 'Conjured Mana Cake',
             sell_in => 3,
             quality => 6
