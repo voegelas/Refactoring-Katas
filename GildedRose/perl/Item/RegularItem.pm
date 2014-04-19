@@ -1,4 +1,4 @@
-package RegularItem;
+package Item::RegularItem;
 
 use Moose;
 extends 'ItemDelegator';

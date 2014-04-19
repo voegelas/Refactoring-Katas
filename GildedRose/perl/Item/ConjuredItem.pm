@@ -1,4 +1,4 @@
-package ConjuredItem;
+package Item::ConjuredItem;
 
 use Moose;
 extends 'ItemDelegator';

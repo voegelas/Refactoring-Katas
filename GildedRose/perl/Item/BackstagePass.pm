@@ -1,4 +1,4 @@
-package BackstagePass;
+package Item::BackstagePass;
 
 use Moose;
 extends 'ItemDelegator';

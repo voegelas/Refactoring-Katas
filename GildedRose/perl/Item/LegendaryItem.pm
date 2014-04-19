@@ -1,4 +1,4 @@
-package LegendaryItem;
+package Item::LegendaryItem;
 
 use Moose;
 extends 'ItemDelegator';

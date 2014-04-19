@@ -6,55 +6,55 @@ use warnings;
 use Test::More 0.96;
 
 use_ok 'GildedRose';
-use_ok 'AgedBrie';
-use_ok 'BackstagePass';
-use_ok 'ConjuredItem';
-use_ok 'LegendaryItem';
-use_ok 'RegularItem';
+use_ok 'Item::AgedBrie';
+use_ok 'Item::BackstagePass';
+use_ok 'Item::ConjuredItem';
+use_ok 'Item::LegendaryItem';
+use_ok 'Item::RegularItem';
 
 subtest 'OMGHAI!' => sub {
     my $items = [
-        RegularItem->new(
+        Item::RegularItem->new(
             name    => '+5 Dexterity Vest',
             sell_in => 10,
             quality => 20
         ),
-        AgedBrie->new(
+        Item::AgedBrie->new(
             name    => 'Aged Brie',
             sell_in => 2,
             quality => 0
         ),
-        RegularItem->new(
+        Item::RegularItem->new(
             name    => 'Elixir of the Mongoose',
             sell_in => 5,
             quality => 7
         ),
-        LegendaryItem->new(
+        Item::LegendaryItem->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => 0,
             quality => 80
         ),
-        LegendaryItem->new(
+        Item::LegendaryItem->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => -1,
             quality => 80
         ),
-        BackstagePass->new(
+        Item::BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 15,
             quality => 20
         ),
-        BackstagePass->new(
+        Item::BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 10,
             quality => 49
         ),
-        BackstagePass->new(
+        Item::BackstagePass->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 5,
             quality => 9
         ),
-        ConjuredItem->new(
+        Item::ConjuredItem->new(
             name    => 'Conjured Mana Cake',
             sell_in => 3,
             quality => 6

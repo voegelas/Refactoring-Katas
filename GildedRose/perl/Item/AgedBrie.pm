@@ -1,4 +1,4 @@
-package AgedBrie;
+package Item::AgedBrie;
 
 use Moose;
 extends 'ItemDelegator';
