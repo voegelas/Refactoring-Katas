@@ -6,6 +6,28 @@ extends 'Item';
 
 use Carp 'croak';
 
+has minimum_quality => (
+    is => 'ro',
+    isa => 'Int',
+    builder => '_build_minimum_quality',
+);
+
+has maximum_quality => (
+    is => 'ro',
+    isa => 'Int',
+    builder => '_build_maximum_quality',
+);
+
+sub _build_minimum_quality {
+    my $self = shift;
+    return 0;
+}
+
+sub _build_maximum_quality {
+    my $self = shift;
+    return 50;
+}
+
 sub name {
     my $self = shift;
     return $self->{name};
