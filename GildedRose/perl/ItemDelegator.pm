@@ -7,14 +7,14 @@ extends 'Item';
 use Carp 'croak';
 
 has minimum_quality => (
-    is => 'ro',
-    isa => 'Int',
+    is      => 'ro',
+    isa     => 'Int',
     builder => '_build_minimum_quality',
 );
 
 has maximum_quality => (
-    is => 'ro',
-    isa => 'Int',
+    is      => 'ro',
+    isa     => 'Int',
     builder => '_build_maximum_quality',
 );
 
