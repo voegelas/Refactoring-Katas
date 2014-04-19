@@ -47,8 +47,8 @@ sub dec_quality {
     return --$self->_item->{quality};
 }
 
-sub update {
-    croak 'Method "update" not implemented by subclass';
+sub update_quality {
+    croak 'Method "update_quality" not implemented by subclass';
 }
 
 no Moose;

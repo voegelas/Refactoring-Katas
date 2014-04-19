@@ -3,7 +3,7 @@ package Item::ConjuredItem;
 use Moose;
 extends 'ItemDelegator';
 
-sub update {
+sub update_quality {
     my $self = shift;
     if ( $self->quality > 0 ) {
         $self->dec_quality;

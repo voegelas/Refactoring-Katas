@@ -7,7 +7,7 @@ has items => ( is => 'ro', isa => 'ArrayRef[ItemDelegator]' );
 sub update_quality {
     my $self = shift;
     for my $item ( @{ $self->items } ) {
-        $item->update;
+        $item->update_quality;
     }
     return;
 }

@@ -3,7 +3,7 @@ package Item::BackstagePass;
 use Moose;
 extends 'ItemDelegator';
 
-sub update {
+sub update_quality {
     my $self = shift;
     if ( $self->quality < 50 ) {
         $self->inc_quality;
