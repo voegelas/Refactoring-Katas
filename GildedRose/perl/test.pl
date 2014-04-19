@@ -62,7 +62,7 @@ subtest 'OMGHAI!' => sub {
     ];
     my $app = GildedRose->new( items => $items );
     $app->update_quality();
-    is( $app->items->[0]->name, '+5 Dexterity Vest' );
+    is( $app->{items}->[0]->name, '+5 Dexterity Vest' );
 };
 
 done_testing();

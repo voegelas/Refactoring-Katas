@@ -1,50 +1,45 @@
 package ItemDelegator;
 
 use Moose;
-use Item;
+use MooseX::NonMoose;
+extends 'Item';
+
 use Carp 'croak';
-
-has _item => ( is => 'ro', isa => 'Item', handles => [qw(_data_printer)] );
-
-around BUILDARGS => sub {
-    my ( $orig, $class, %attrs ) = @_;
-    return $class->$orig( _item => Item->new(%attrs) );
-};
 
 sub name {
     my $self = shift;
-    return $self->_item->{name};
+    return $self->{name};
 }
 
 sub sell_in {
     my $self = shift;
-    return $self->_item->{sell_in};
+    return $self->{sell_in};
 }
 
 sub dec_sell_in {
     my $self = shift;
-    return --$self->_item->{sell_in};
+    return --$self->{sell_in};
 }
 
 sub quality {
     my $self = shift;
-    return $self->_item->{quality};
+    return $self->{quality};
 }
 
 sub set_quality {
     my $self    = shift;
     my $quality = shift;
-    return $self->_item->{quality} = $quality;
+    return $self->{quality} = $quality;
 }
 
 sub inc_quality {
     my $self = shift;
-    return ++$self->_item->{quality};
+    return ++$self->{quality};
 }
 
 sub dec_quality {
     my $self = shift;
-    return --$self->_item->{quality};
+    return --$self->{quality};
 }
 
 sub update_quality {

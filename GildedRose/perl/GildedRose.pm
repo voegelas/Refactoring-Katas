@@ -1,18 +1,19 @@
 package GildedRose;
 
-use Moose;
+use strict;
+use warnings;
 
-has items => ( is => 'ro', isa => 'ArrayRef[ItemDelegator]' );
+sub new {
+    my ( $class, %attrs ) = @_;
+    return bless \%attrs, $class;
+}
 
 sub update_quality {
     my $self = shift;
-    for my $item ( @{ $self->items } ) {
+    for my $item ( @{ $self->{items} } ) {
         $item->update_quality;
     }
     return;
 }
-
-no Moose;
-__PACKAGE__->meta->make_immutable;
 
 1;
