@@ -1,6 +1,3 @@
-use strict;
-use warnings;
-
 package Tennis::Game1;
 
 use Moose;
@@ -28,7 +25,7 @@ sub score {
 
     my @players = keys %{ $self->points_for };
     my @points  = values %{ $self->points_for };
-    my $max = max @points;
+    my $max     = max @points;
     if ( all { $_ == $max } @points ) {
         my @tie_scores = qw(Love-All Fifteen-All Thirty-All);
         return loc( $tie_scores[ $points[0] ] // 'Deuce' );
@@ -43,5 +40,8 @@ sub score {
     my @scores = qw(Love Fifteen Thirty Forty);
     return join '-', map { loc( $scores[$_] ) } @points;
 }
+
+no Moose;
+__PACKAGE__->meta->make_immutable;
 
 1;
