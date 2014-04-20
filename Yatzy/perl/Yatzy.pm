@@ -45,15 +45,20 @@ sub sixes {
     return sum 0, grep { $_ == 6 } @dice;
 }
 
-sub _sum_n_sets_of_size_m {
+sub _take_n_sets_of_size_m {
     my ( $n, $m, $dice_ref ) = @_;
     my @reversed_numbers = part { 6 - $_ } @{$dice_ref};
     my @sets = grep { defined $_ && @{$_} >= $m } @reversed_numbers;
     if ( @sets < $n ) {
-        return 0;
+        return ();
     }
-    my @n_sets = @sets[ 0 .. $n - 1 ];
-    return sum 0, map { @{$_}[ 0 .. $m - 1 ] } @n_sets;
+    return map { $_->[0] } @sets[ 0 .. $n - 1 ];
+}
+
+sub _sum_n_sets_of_size_m {
+    my ( $n, $m, $dice_ref ) = @_;
+    my @n_sets = _take_n_sets_of_size_m( $n, $m, $dice_ref );
+    return $m * sum 0, @n_sets;
 }
 
 sub one_pair {
@@ -78,29 +83,28 @@ sub three_of_a_kind {
 
 sub small_straight {
     my (@dice) = @_;
-    my @numbers = part {$_ - 1} @dice;
+    my @numbers = part { $_ - 1 } @dice;
     return ( all { defined $_ && @{$_} > 0 } @numbers[ 0 .. 4 ] ) ? 15 : 0;
 }
 
 sub large_straight {
     my (@dice) = @_;
-    my @numbers = part {$_ - 1} @dice;
+    my @numbers = part { $_ - 1 } @dice;
     return ( all { defined $_ && @{$_} > 0 } @numbers[ 1 .. 5 ] ) ? 20 : 0;
 }
 
 sub full_house {
     my (@dice) = @_;
-    my @reversed_numbers = part { 6 - $_ } @dice;
-    my @sets = grep { defined $_ && @{$_} >= 3 } @reversed_numbers;
-    if ( @sets < 1 ) {
+    my ($three_of_a_kind) = _take_n_sets_of_size_m( 1, 3, \@dice );
+    if ( !defined $three_of_a_kind ) {
         return 0;
     }
-    push @sets, grep { defined $_ && @{$_} == 2 } @reversed_numbers;
-    if ( @sets < 2 ) {
+    my @other_dice = grep { $_ != $three_of_a_kind } @dice;
+    my ($pair) = _take_n_sets_of_size_m( 1, 2, \@other_dice );
+    if ( !defined $pair ) {
         return 0;
     }
-    my ( $three_of_a_kind_ref, $pair_ref ) = @sets;
-    return sum @{$three_of_a_kind_ref}[ 0 .. 2 ], @{$pair_ref}[ 0 .. 1 ];
+    return 3 * $three_of_a_kind + 2 * $pair;
 }
 
 1;
