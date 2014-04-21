@@ -10,4 +10,4 @@ apt-get install perl liblist-allutils-perl
 
 Run the tests with:
 
-perl test.pl
+prove test.pl
