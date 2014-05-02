@@ -1,5 +1,8 @@
 package ItemFactory;
 
+use strict;
+use warnings;
+
 use Item::AgedBrie;
 use Item::BackstagePass;
 use Item::ConjuredItem;
