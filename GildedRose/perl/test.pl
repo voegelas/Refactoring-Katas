@@ -6,20 +6,16 @@ use warnings;
 use Test::More 0.96;
 
 use_ok 'GildedRose';
-use_ok 'Item::AgedBrie';
-use_ok 'Item::BackstagePass';
-use_ok 'Item::ConjuredItem';
-use_ok 'Item::LegendaryItem';
-use_ok 'Item::RegularItem';
+use_ok 'Item';
 
 subtest 'aged_brie' => sub {
     my $items = [
-        Item::AgedBrie->new(
+        Item->new(
             name    => 'Aged Brie',
             sell_in => 1,
             quality => 0
         ),
-        Item::AgedBrie->new(
+        Item->new(
             name    => 'Aged Brie',
             sell_in => 0,
             quality => 48,
@@ -40,17 +36,17 @@ subtest 'aged_brie' => sub {
 
 subtest 'backstage_pass' => sub {
     my $items = [
-        Item::BackstagePass->new(
+        Item->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 15,
             quality => 20
         ),
-        Item::BackstagePass->new(
+        Item->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 10,
             quality => 49
         ),
-        Item::BackstagePass->new(
+        Item->new(
             name    => 'Backstage passes to a TAFKAL80ETC concert',
             sell_in => 5,
             quality => 9
@@ -68,7 +64,7 @@ subtest 'backstage_pass' => sub {
 
 subtest 'conjured_item' => sub {
     my $items = [
-        Item::ConjuredItem->new(
+        Item->new(
             name    => 'Conjured Mana Cake',
             sell_in => 2,
             quality => 8
@@ -91,17 +87,17 @@ subtest 'conjured_item' => sub {
 
 subtest 'legendary_item' => sub {
     my $items = [
-        Item::LegendaryItem->new(
+        Item->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => 1,
             quality => 80
         ),
-        Item::LegendaryItem->new(
+        Item->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => 0,
             quality => 80
         ),
-        Item::LegendaryItem->new(
+        Item->new(
             name    => 'Sulfuras, Hand of Ragnaros',
             sell_in => -1,
             quality => 80
@@ -126,22 +122,22 @@ subtest 'legendary_item' => sub {
 
 subtest 'regular_item' => sub {
     my $items = [
-        Item::RegularItem->new(
+        Item->new(
             name    => '+5 Dexterity Vest',
             sell_in => 10,
             quality => 20
         ),
-        Item::RegularItem->new(
+        Item->new(
             name    => 'Elixir of the Mongoose',
             sell_in => 0,
             quality => 7
         ),
-        Item::RegularItem->new(
+        Item->new(
             name    => 'Elixir of Brute Force',
             sell_in => 5,
             quality => 0
         ),
-        Item::RegularItem->new(
+        Item->new(
             name    => 'Major Healing Potion',
             sell_in => -1,
             quality => 0

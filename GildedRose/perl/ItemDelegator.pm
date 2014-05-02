@@ -1,10 +1,13 @@
 package ItemDelegator;
 
 use Moose;
-use MooseX::NonMoose;
-extends 'Item';
 
 use Carp 'croak';
+
+has item => (
+    is  => 'ro',
+    isa => 'Item',
+);
 
 has minimum_quality => (
     is      => 'ro',
@@ -30,38 +33,38 @@ sub _build_maximum_quality {
 
 sub name {
     my $self = shift;
-    return $self->{name};
+    return $self->{item}->{name};
 }
 
 sub sell_in {
     my $self = shift;
-    return $self->{sell_in};
+    return $self->{item}->{sell_in};
 }
 
 sub dec_sell_in {
     my $self = shift;
-    return --$self->{sell_in};
+    return --$self->{item}->{sell_in};
 }
 
 sub quality {
     my $self = shift;
-    return $self->{quality};
+    return $self->{item}->{quality};
 }
 
 sub set_quality {
     my $self    = shift;
     my $quality = shift;
-    return $self->{quality} = $quality;
+    return $self->{item}->{quality} = $quality;
 }
 
 sub inc_quality {
     my $self = shift;
-    return ++$self->{quality};
+    return ++$self->{item}->{quality};
 }
 
 sub dec_quality {
     my $self = shift;
-    return --$self->{quality};
+    return --$self->{item}->{quality};
 }
 
 sub update_quality {

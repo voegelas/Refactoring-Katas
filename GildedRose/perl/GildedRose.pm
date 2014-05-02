@@ -3,6 +3,8 @@ package GildedRose;
 use strict;
 use warnings;
 
+use ItemFactory;
+
 sub new {
     my ( $class, %attrs ) = @_;
     return bless \%attrs, $class;
@@ -11,7 +13,7 @@ sub new {
 sub update_quality {
     my $self = shift;
     for my $item ( @{ $self->{items} } ) {
-        $item->update_quality;
+        ItemFactory::create_item($item)->update_quality;
     }
     return;
 }
