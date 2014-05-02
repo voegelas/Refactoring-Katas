@@ -13,7 +13,8 @@ sub new {
 sub update_quality {
     my $self = shift;
     for my $item ( @{ $self->{items} } ) {
-        ItemFactory::create_item($item)->update_quality;
+        my $item_delegator = ItemFactory::create_item($item);
+        $item_delegator->update_quality();
     }
     return;
 }
