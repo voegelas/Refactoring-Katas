@@ -1,0 +1,16 @@
+image: perl:5.26
+
+before_script:
+  - cpanm TAP::Harness::JUnit
+  - cpanm List::AllUtils
+  - cpanm Moose
+  - cpanm Tie::IxHash
+
+test_job:
+  script:
+    - ( cd GildedRose/perl && env JUNIT_PACKAGE=GildedRose JUNIT_OUTPUT_FILE=junit_output.xml prove -Q --harness TAP::Harness::JUnit test.pl )
+    - ( cd Tennis/perl && env JUNIT_PACKAGE=Tennis JUNIT_OUTPUT_FILE=junit_output.xml prove -Q --harness TAP::Harness::JUnit test.pl )
+    - ( cd Yatzy/perl && env JUNIT_PACKAGE=Yatzy JUNIT_OUTPUT_FILE=junit_output.xml prove -Q --harness TAP::Harness::JUnit test.pl )
+  artifacts:
+    reports:
+      junit: */perl/junit_output.xml
