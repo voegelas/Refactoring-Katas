@@ -13,4 +13,4 @@ test_job:
     - ( cd Yatzy/perl && env JUNIT_PACKAGE=Yatzy JUNIT_OUTPUT_FILE=junit_output.xml prove -Q --harness TAP::Harness::JUnit test.pl )
   artifacts:
     reports:
-      junit: */perl/junit_output.xml
+      junit: '*/perl/junit_output.xml'
